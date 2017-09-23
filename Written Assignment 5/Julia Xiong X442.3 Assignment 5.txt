@@ -1,0 +1,99 @@
+Written Assignment 5
+
+"""Question 1: Using the keys method for dictionaries and the sort method for 
+lists, write a for loop that prints the keys and corresponding values of 
+a dictionary in the alphabetical order of the keys."""
+
+import sys
+
+def main():
+    
+	dictionary = {'s':'star fruit', 'b':'banana', 'o':'orange', 'd': 'dragon fruit'}
+
+	key_list = list(dictionary.keys())
+	key_list.sort()
+	
+	for i in range(len(key_list)):
+		print ("key is " + key_list[i] + " and value is " + dictionary[key_list[i]])
+
+if __name__ == '__main__':
+    main()
+
+
+"""Question 2: As an alternative to the range function, some programmers like to increment a 
+counter inside a while loop and stop the while loop when the counter is no longer 
+less than the length of the array."""
+
+import sys
+
+def main():
+    
+	a = [7, 12, 9, 14, 15, 18, 12] 
+	b = [9, 14, 8, 3, 15, 17, 15] 
+	count = 0
+
+	big = [] 
+	while count < len(a):
+	    big.append(max(a[count], b[count])) 
+	    count += 1
+	print(big)
+
+if __name__ == '__main__':
+    main()
+
+
+"""Question 3: Write a loop that reads each line of a file. It should count the number of 
+characters in each line and keep track of the total number of characters read. 
+Once you have a total of 1,000 or more characters, break from the loop. 
+(You can use a break statement to do this.)"""
+
+import sys
+
+def main():
+    
+	my_files = open("newfile", 'r') #open file
+	char_count = 0
+
+	while True: 
+		line_text = my_files.readline() #read each line
+		line_char = len(line_text)
+
+		if line_text != "" and char_count < 1000: #only proceed if not at end of lines and less than 1000 characters
+			char_count += line_char #add character count of line to global character counter
+		else: 
+			break
+
+	print(char_count)
+	my_files.close()
+
+if __name__ == '__main__':
+    main()
+
+
+"""Question 4: Modify the program written in question 3 so that it doesn't count 
+characters on any line that begins with a pound sign (#)."""
+
+import sys
+
+def main():
+    
+	my_files = open("newfile", 'r') #open file
+	char_count = 0
+
+	while True: 
+		line_text = my_files.readline() #read each line
+		line_char = len(line_text)
+
+		if line_text != "" and (char_count < 1000): #checks if not at end of file and character count < 1000
+			if not line_text.startswith('#'): #checks if line starts with #
+				char_count += line_char #add character count of line to global character counter
+			else: 
+				continue
+		else:
+			break
+
+	print(char_count)
+	my_files.close()
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,66 @@
+"""Question 1: Suppose you want to determine whether an arbitrary text string can be converted to a number. 
+Write a function that uses a try/except clause to solve this problem. 
+Can you think of another way to solve this problem"""
+
+import re
+
+def num_convert(string): #using try and except to convert a number to an int
+	try:
+		int_num = int(string)
+		print ('{0} is converted to an integer.'.format(string))
+	except ValueError as ex:
+		print ('Input cannot be converted to an integer: %s' % (ex))
+	return
+
+def other_convert(string): #using RegEx to convert a number to an int
+	num_match = re.match (r'^[0-9]+$', string)
+
+	if num_match:
+		int_num = int(string)
+		print ('{0} is converted to an integer.'.format(string))
+	else: 
+		print ('Input cannot be converted to an integer.')
+	return
+
+
+def main():
+
+	my_string1 = 'one'
+	num_convert(my_string1)
+
+	my_string2 = '2'
+	num_convert(my_string2)
+
+	my_string3 = '3.14'
+	other_convert(my_string3)
+
+	my_string4 = '4'
+	other_convert(my_string4)
+
+if __name__ == '__main__':
+	main()
+
+
+
+"""Question 2: The input function will read a single line of text from the terminal. 
+If you wanted to read several lines of text, you could embed this function inside a 
+while loop and terminate the loop when the user of the program presses the interrupt 
+key (Ctrl-C under UNIX, Linux and Windows.) Write such a program, and note its behavior 
+when it receives the interrupt signal. Use a try/except clause to make the program behave more grace"""
+
+def main():
+	entered_inputs = []
+
+	try:
+		while 1:
+			my_input = input('Type an input ')
+			entered_inputs.append(my_input) #saves the entered inputs into a list
+
+	except KeyboardInterrupt:
+		print('Input request terminated with KeyboardInterrupt')
+		print("Your current inputs: {0}".format(entered_inputs))
+
+	return	
+
+if __name__ == '__main__':
+	main()
